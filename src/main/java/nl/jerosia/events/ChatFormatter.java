@@ -3,16 +3,16 @@ package nl.jerosia.events;
 import net.milkbowl.vault.chat.Chat;
 import nl.jerosia.Jerosia;
 import nl.jerosia.utils.FormatUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.server.ServiceRegisterEvent;
 import org.bukkit.event.server.ServiceUnregisterEvent;
 
 import static nl.jerosia.Jerosia.CHATFORMAT;
 
-public class ChatFormatter {
+public class ChatFormatter implements Listener {
     private static final String NAME_PLACEHOLDER = "{name}";
     private static final String DISPLAYNAME_PLACEHOLDER = "{displayname}";
     private static final String MESSAGE_PLACEHOLDER = "{message}";
