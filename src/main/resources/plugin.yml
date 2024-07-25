@@ -1,0 +1,7 @@
+name: Jerosia
+version: '1.0'
+main: nl.jerosia.Jerosia
+api-version: '1.21'
+load: STARTUP
+authors: [ Thunderkookie15 ]
+description: Ismail is dik
