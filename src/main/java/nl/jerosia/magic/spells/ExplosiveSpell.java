@@ -2,7 +2,7 @@ package nl.jerosia.magic.spells;
 
 import nl.jerosia.Jerosia;
 import nl.jerosia.player.User;
-import nl.jerosia.magic.ISpell;
+import nl.jerosia.magic.Spell;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
@@ -12,7 +12,7 @@ import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class ExplosiveSpell implements ISpell {
+public class ExplosiveSpell implements Spell {
 
     private User caster;
 

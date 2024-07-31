@@ -2,7 +2,7 @@ package nl.jerosia.magic;
 
 import nl.jerosia.player.User;
 
-public interface ISpell {
+public interface Spell {
 
     void fire(User user);
     int getSpellId();

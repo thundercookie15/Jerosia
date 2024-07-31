@@ -15,6 +15,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static nl.jerosia.utils.FormatUtils.MESSAGE_PREFIX;
+
 public class CmdItem implements TabExecutor {
 
     private final Jerosia plugin;
@@ -28,17 +30,17 @@ public class CmdItem implements TabExecutor {
         if (!(sender instanceof Player)) return false;
         User user = this.plugin.getUser((Player) sender);
         if (args.length == 0) {
-            user.send("Usage: /item <item>");
+            user.send(MESSAGE_PREFIX + "Usage: /item <item>");
             return false;
         }
         Items item = Items.getItemByName(args[0]);
         if (item == null) {
-            user.send("Item not found");
+            user.send(MESSAGE_PREFIX + "Item not found");
             return false;
         }
 
         user.getBase().getInventory().addItem(item.getItem());
-        user.send("Item &c%s &7added to your inventory.".formatted(item.name()));
+        user.send(MESSAGE_PREFIX + "Item &c%s &7added to your inventory.".formatted(item.name()));
         return true;
     }
 

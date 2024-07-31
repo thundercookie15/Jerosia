@@ -1,6 +1,6 @@
 package nl.jerosia.player;
 
-import nl.jerosia.magic.ISpell;
+import nl.jerosia.magic.Spell;
 import nl.jerosia.magic.Spells;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
@@ -13,14 +13,14 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.Arrays;
 
-import static nl.jerosia.utils.FormatUtils.MESSAGE_PREFIX;
+import static nl.jerosia.utils.FormatUtils.parseColors;
 
 public class User implements Comparable<User>, Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
     private final transient OfflinePlayer player;
-    private ISpell selectedSpell;
+    private Spell selectedSpell;
 
     public User(OfflinePlayer player) {
         this.player = player;
@@ -36,11 +36,11 @@ public class User implements Comparable<User>, Serializable {
     }
 
     public void send(String message) {
-        getBase().sendMessage(MESSAGE_PREFIX + message);
+        getBase().sendMessage(parseColors(message));
     }
 
     public void send(String[] messages) {
-        getBase().sendMessage(MESSAGE_PREFIX + Arrays.toString(messages));
+        getBase().sendMessage(parseColors(Arrays.toString(messages)));
     }
 
     public ItemStack getItemInMainHand() {
@@ -59,11 +59,11 @@ public class User implements Comparable<User>, Serializable {
         getSelectedSpell().fire(this);
     }
 
-    public void fireSpell(ISpell spell) {
+    public void fireSpell(Spell spell) {
         spell.fire(this);
     }
 
-    public ISpell getSelectedSpell() {
+    public Spell getSelectedSpell() {
         if (selectedSpell == null) selectedSpell = Spells.EXPLOSIVE.getSpell();
         return selectedSpell;
     }

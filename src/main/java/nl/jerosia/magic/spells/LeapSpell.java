@@ -1,12 +1,12 @@
 package nl.jerosia.magic.spells;
 
-import nl.jerosia.magic.ISpell;
+import nl.jerosia.magic.Spell;
 import nl.jerosia.player.User;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.util.Vector;
 
-public class LeapSpell implements ISpell {
+public class LeapSpell implements Spell {
 
     @Override
     public String getSpellName() {
