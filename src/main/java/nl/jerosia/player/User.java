@@ -32,6 +32,14 @@ public class User implements Comparable<User>, Serializable {
         return player.getPlayer();
     }
 
+    public void send(String message) {
+        getBase().sendMessage(message);
+    }
+
+    public void send(String[] messages) {
+        getBase().sendMessage(messages);
+    }
+
     public ItemStack getItemInMainHand() {
         return player.getPlayer().getInventory().getItemInMainHand();
     }
