@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.Serial;
@@ -31,6 +32,10 @@ public class User implements Comparable<User>, Serializable {
         return player.getPlayer();
     }
 
+    public ItemStack getItemInMainHand() {
+        return player.getPlayer().getInventory().getItemInMainHand();
+    }
+
     public Location getLocation() {
         return player.getPlayer().getLocation();
     }
@@ -41,6 +46,10 @@ public class User implements Comparable<User>, Serializable {
 
     public void fireSpell() {
         getSelectedSpell().fire(this);
+    }
+
+    public void fireSpell(ISpell spell) {
+        spell.fire(this);
     }
 
     public ISpell getSelectedSpell() {
