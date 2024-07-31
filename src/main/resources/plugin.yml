@@ -6,3 +6,5 @@ authors: [ Thunderkookie15 ]
 description: Ismail is dik
 depend:
   - Vault
+softdepend:
+  - PlaceholderAPI

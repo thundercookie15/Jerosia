@@ -13,8 +13,6 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.server.ServiceRegisterEvent;
 import org.bukkit.event.server.ServiceUnregisterEvent;
 
-import static nl.jerosia.Jerosia.CHATFORMAT;
-
 public class ChatFormatter implements Listener {
     private static final String NAME_PLACEHOLDER = "{name}";
     private static final String DISPLAYNAME_PLACEHOLDER = "{displayname}";
@@ -26,7 +24,7 @@ public class ChatFormatter implements Listener {
     private String format;
     private Chat vaultChat = null;
 
-    private LuckPerms luckPerms;
+    private final LuckPerms luckPerms;
 
     public ChatFormatter(Jerosia plugin) {
         this.plugin = plugin;
