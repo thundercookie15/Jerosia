@@ -1,4 +1,4 @@
-package nl.jerosia.wands.magic;
+package nl.jerosia.magic;
 
 import nl.jerosia.player.User;
 

@@ -1,6 +1,6 @@
-package nl.jerosia.wands.magic;
+package nl.jerosia.magic;
 
-import nl.jerosia.wands.magic.spells.ExplosiveSpell;
+import nl.jerosia.magic.spells.ExplosiveSpell;
 
 public enum Spells {
     EXPLOSIVE(new ExplosiveSpell(), "Explosive", 0),;

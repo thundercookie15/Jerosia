@@ -1,7 +1,7 @@
 package nl.jerosia.player;
 
-import nl.jerosia.wands.magic.ISpell;
-import nl.jerosia.wands.magic.Spells;
+import nl.jerosia.magic.ISpell;
+import nl.jerosia.magic.Spells;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;

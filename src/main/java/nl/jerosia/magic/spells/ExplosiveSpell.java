@@ -1,8 +1,8 @@
-package nl.jerosia.wands.magic.spells;
+package nl.jerosia.magic.spells;
 
 import nl.jerosia.Jerosia;
 import nl.jerosia.player.User;
-import nl.jerosia.wands.magic.ISpell;
+import nl.jerosia.magic.ISpell;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
