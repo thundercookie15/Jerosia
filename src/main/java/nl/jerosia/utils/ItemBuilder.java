@@ -85,6 +85,13 @@ public class ItemBuilder implements Serializable {
         return this;
     }
 
+    public ItemBuilder fireResistant() {
+        ItemMeta meta = this.item.getItemMeta();
+        meta.setFireResistant(true);
+        this.item.setItemMeta(meta);
+        return this;
+    }
+
     public ItemBuilder coloredLore(List<String> lore) {
         ItemMeta meta = this.item.getItemMeta();
         meta.setLore(FormatUtils.parseColors(lore));
@@ -174,6 +181,13 @@ public class ItemBuilder implements Serializable {
     public ItemBuilder persistentDataContainer(NamespacedKey key, PersistentDataType<Integer, Integer> type, int value) {
         ItemMeta meta = this.item.getItemMeta();
         meta.getPersistentDataContainer().set(key, type, value);
+        this.item.setItemMeta(meta);
+        return this;
+    }
+
+    public ItemBuilder setMaxStackSize(int maxStackSize) {
+        ItemMeta meta = this.item.getItemMeta();
+        meta.setMaxStackSize(maxStackSize);
         this.item.setItemMeta(meta);
         return this;
     }
