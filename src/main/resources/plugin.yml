@@ -8,3 +8,8 @@ depend:
   - Vault
 softdepend:
   - PlaceholderAPI
+commands:
+  item:
+    description: Gives you a custom
+    usage: /item <item>
+    permission: jerosia.item

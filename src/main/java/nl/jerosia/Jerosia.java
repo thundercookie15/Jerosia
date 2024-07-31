@@ -1,6 +1,8 @@
 package nl.jerosia;
 
+import nl.jerosia.commands.CmdItem;
 import nl.jerosia.events.ChatFormatter;
+import nl.jerosia.events.UserEvents;
 import nl.jerosia.player.DataPlayer;
 import nl.jerosia.player.User;
 import org.bukkit.OfflinePlayer;
@@ -20,12 +22,17 @@ public final class Jerosia extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         instance = this;
+        this.registerUsers();
+
+        this.getCommand("item").setExecutor(new CmdItem(this));
         this.getServer().getPluginManager().registerEvents(new ChatFormatter(this), this);
+        this.getServer().getPluginManager().registerEvents(new UserEvents(this), this);
+
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        this.unregisterUsers();
     }
 
     public static Jerosia getInstance() {

@@ -11,6 +11,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Arrays;
+
+import static nl.jerosia.utils.FormatUtils.MESSAGE_PREFIX;
 
 public class User implements Comparable<User>, Serializable {
     @Serial
@@ -33,11 +36,11 @@ public class User implements Comparable<User>, Serializable {
     }
 
     public void send(String message) {
-        getBase().sendMessage(message);
+        getBase().sendMessage(MESSAGE_PREFIX + message);
     }
 
     public void send(String[] messages) {
-        getBase().sendMessage(messages);
+        getBase().sendMessage(MESSAGE_PREFIX + Arrays.toString(messages));
     }
 
     public ItemStack getItemInMainHand() {
