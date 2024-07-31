@@ -18,6 +18,8 @@ import java.util.stream.IntStream;
 
 public class FormatUtils {
 
+    public static final String MESSAGE_PREFIX = parseColors("&8[&6Jerosia&8] &7");
+
     public static List<String> parseColors(List<String> list) {
         return list.stream().map(FormatUtils::parseColors).collect(Collectors.toList());
     }
