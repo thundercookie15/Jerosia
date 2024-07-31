@@ -9,17 +9,26 @@ import org.bukkit.Location;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Firework;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class ExplosiveSpell implements ISpell {
-
-    private final int spellId = 0;
-    private final String spellName = "Explosive";
 
     private User caster;
 
     public ExplosiveSpell() {}
 
+    @Override
+    public int getSpellId() {
+        return 0;
+    }
+
+    @Override
+    public String getSpellName() {
+        return "Explosive";
+    }
+
+    @Override
     public void fire(User user) {
         caster = user;
 
@@ -29,12 +38,12 @@ public class ExplosiveSpell implements ISpell {
             @Override
             public void run() {
                 if (!(explosive.isValid())) {
-                    caster.getWorld().createExplosion(explosive.getLocation(), 10F, false, false, caster.getBase());
+                    caster.getWorld().createExplosion(getCenterBlock(explosive.getLocation()), 5F, true, true, caster.getBase());
                     this.cancel();
                 }
 
                 if (explosive.getTicksLived() > 20*3) {
-                    caster.getWorld().createExplosion(explosive.getLocation(), 10F, false, false, caster.getBase());
+                    caster.getWorld().createExplosion(getCenterBlock(explosive.getLocation()), 5F, false, false, caster.getBase());
                     explosive.remove();
                     this.cancel();
                 }
@@ -44,15 +53,6 @@ public class ExplosiveSpell implements ISpell {
         }.runTaskTimer(Jerosia.getInstance(), 3,1 );
     }
 
-    @Override
-    public int getSpellId() {
-        return spellId;
-    }
-
-    @Override
-    public String getSpellName() {
-        return spellName;
-    }
 
     private Fireball explosiveFireball() {
         Location spawnLocation = caster.getBase().getLocation();
@@ -60,8 +60,9 @@ public class ExplosiveSpell implements ISpell {
         Fireball explosive = caster.getWorld().spawn(spawnLocation, Fireball.class);
         explosive.setShooter(caster.getBase());
         explosive.setVelocity(caster.getBase().getEyeLocation().getDirection().multiply(3));
-        explosive.setBounce(false);
         explosive.setIsIncendiary(false);
+        explosive.setMetadata("explosive_fireball", new FixedMetadataValue(Jerosia.getInstance(), true));
+        explosive.setInvulnerable(true);
         explosive.setYield(0F);
         return explosive;
 
@@ -70,6 +71,7 @@ public class ExplosiveSpell implements ISpell {
     private Firework explosiveFirework(Fireball explosive) {
         Firework firework = caster.getWorld().spawn(explosive.getLocation(), Firework.class);
         firework.setSilent(true);
+        firework.setMetadata("explosive_firework", new FixedMetadataValue(Jerosia.getInstance(), true));
         FireworkMeta fireworkMeta = firework.getFireworkMeta();
         FireworkEffect fireworkEffect = FireworkEffect.builder()
                 .flicker(true)
@@ -80,5 +82,16 @@ public class ExplosiveSpell implements ISpell {
         fireworkMeta.addEffect(fireworkEffect);
         firework.setFireworkMeta(fireworkMeta);
         return firework;
+    }
+
+    private Location getCenterBlock(Location location) {
+        return new Location(location.getWorld(), getRelativeCoordinate(
+                location.getBlockX()),
+                location.getBlockY() + 1,
+                getRelativeCoordinate(location.getBlockZ()));
+    }
+
+    private double getRelativeCoordinate(int coordinate) {
+        return (double) coordinate + .5;
     }
 }

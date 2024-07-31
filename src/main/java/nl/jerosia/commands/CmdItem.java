@@ -7,11 +7,13 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CmdItem implements TabExecutor {
 
@@ -36,13 +38,13 @@ public class CmdItem implements TabExecutor {
         }
 
         user.getBase().getInventory().addItem(item.getItem());
-        user.send("Item %s added to your inventory".formatted(item.name()));
+        user.send("Item &c%s &7added to your inventory.".formatted(item.name()));
         return true;
     }
 
     @Nullable
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        return List.of(Arrays.toString(Items.values()));
+        return Arrays.stream(Items.values()).map(Items::getItemName).collect(Collectors.toList());
     }
 }

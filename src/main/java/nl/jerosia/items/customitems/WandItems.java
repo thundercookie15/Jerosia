@@ -16,7 +16,7 @@ public class WandItems {
         item.fireResistant();
         item.coloredName("&cEmpire Wand");
         item.coloredLore("&7This wand is surrounded by a powerful magical aura.", "&7It is said that this wand was once used by the", "&7old gods of this world.");
-        item.persistentDataContainer(new NamespacedKey(Jerosia.getInstance(), "jerosia_item_id"), PersistentDataType.INTEGER, Items.EMPIRE_WAND.getItemId());
+        item.persistentDataContainer(new NamespacedKey(Jerosia.getInstance(), "jerosia_item_id"), PersistentDataType.INTEGER, 0);
         return item.create();
     }
 

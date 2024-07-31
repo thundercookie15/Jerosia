@@ -71,6 +71,7 @@ public class User implements Comparable<User>, Serializable {
     public void selectNextSpell() {
         if (this.selectedSpell == null) selectedSpell = Spells.EXPLOSIVE.getSpell();
         if (getSelectedSpell().isToggleSpell()) this.selectedSpell.stopCasting(this);
+        this.selectedSpell = Spells.nextSpell(getSelectedSpell().getSpellId());
     }
 
 

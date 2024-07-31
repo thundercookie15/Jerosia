@@ -7,17 +7,16 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public enum Items {
-    EMPIRE_WAND(WandItems.EMPIRE_WAND_ITEM(), ItemTypes.WAND, 0),;
+    EMPIRE_WAND(WandItems.EMPIRE_WAND_ITEM(), "EMPIRE_WAND", ItemTypes.WAND, 0),;
     private final ItemStack item;
+    private final String name;
     private final ItemTypes itemType;
     private final int itemId;
 
-    Items(ItemStack item, ItemTypes itemType, int itemId) {
+    Items(ItemStack item, String name, ItemTypes itemType, int itemId) {
         this.item = item;
+        this.name = name;
         this.itemType = itemType;
         this.itemId = itemId;
     }
@@ -34,17 +33,13 @@ public enum Items {
         return itemId;
     }
 
-    public List<String> items() {
-        List<String> items = new ArrayList<>();
-        for (Items item : Items.values()) {
-            items.add(item.name());
-        }
-        return items;
+    public String getItemName() {
+        return name;
     }
 
     public static Items getItemByName(String itemName) {
         for (Items item : Items.values()) {
-            if (item.name().equals(itemName)) {
+            if (item.getItemName().equals(itemName)) {
                 return item;
             }
         }

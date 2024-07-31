@@ -5,6 +5,7 @@ import nl.jerosia.player.User;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import static nl.jerosia.items.Items.EMPIRE_WAND;
@@ -31,6 +32,18 @@ public class UserEvents implements Listener {
 
         if (event.getAction() == Action.RIGHT_CLICK_AIR) {
             user.selectNextSpell();
+        }
+    }
+
+    @EventHandler
+    public void onExplosiveHit(EntityDamageEvent event) {
+        if (event.getEntity().getMetadata("explosive_firework").getFirst().asBoolean()) {
+            event.setDamage(0);
+            event.setCancelled(true);
+        }
+        if (event.getEntity().getMetadata("explosive_firework").getFirst().asBoolean()) {
+            event.setDamage(0);
+            event.setCancelled(true);
         }
     }
 
