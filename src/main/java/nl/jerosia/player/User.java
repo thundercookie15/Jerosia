@@ -1,6 +1,10 @@
 package nl.jerosia.player;
 
+import nl.jerosia.wands.magic.ISpell;
+import nl.jerosia.wands.magic.Spells;
+import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -12,6 +16,7 @@ public class User implements Comparable<User>, Serializable {
     private static final long serialVersionUID = 1L;
 
     private final transient OfflinePlayer player;
+    private ISpell selectedSpell;
 
     public User(OfflinePlayer player) {
         this.player = player;
@@ -25,4 +30,28 @@ public class User implements Comparable<User>, Serializable {
     public Player getBase() {
         return player.getPlayer();
     }
+
+    public Location getLocation() {
+        return player.getPlayer().getLocation();
+    }
+
+    public World getWorld() {
+        return player.getPlayer().getWorld();
+    }
+
+    public void fireSpell() {
+        getSelectedSpell().fire(this);
+    }
+
+    public ISpell getSelectedSpell() {
+        if (selectedSpell == null) selectedSpell = Spells.EXPLOSIVE.getSpell();
+        return selectedSpell;
+    }
+
+    public void selectNextSpell() {
+        if (this.selectedSpell == null) selectedSpell = Spells.EXPLOSIVE.getSpell();
+        if (getSelectedSpell().isToggleSpell()) this.selectedSpell.stopCasting(this);
+    }
+
+
 }

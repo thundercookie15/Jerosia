@@ -12,17 +12,24 @@ import java.util.UUID;
 
 public final class Jerosia extends JavaPlugin {
 
+    private static Jerosia instance;
+
     public static String CHATFORMAT = "<{prefix}{name}{suffix}> {message}";
 
     @Override
     public void onEnable() {
         // Plugin startup logic
+        instance = this;
         this.getServer().getPluginManager().registerEvents(new ChatFormatter(this), this);
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+    }
+
+    public static Jerosia getInstance() {
+        return instance;
     }
 
     public void registerUsers() {
