@@ -38,12 +38,12 @@ public class ExplosiveSpell implements Spell {
             @Override
             public void run() {
                 if (!(explosive.isValid())) {
-                    caster.getWorld().createExplosion(getCenterBlock(explosive.getLocation()), 5F, true, true, caster.getBase());
+                    caster.getWorld().createExplosion(getCenterBlock(explosive.getLocation()), 10F, true, true, caster.getBase());
                     this.cancel();
                 }
 
                 if (explosive.getTicksLived() > 20*3) {
-                    caster.getWorld().createExplosion(getCenterBlock(explosive.getLocation()), 5F, false, false, caster.getBase());
+                    caster.getWorld().createExplosion(getCenterBlock(explosive.getLocation()), 10F, false, false, caster.getBase());
                     explosive.remove();
                     this.cancel();
                 }

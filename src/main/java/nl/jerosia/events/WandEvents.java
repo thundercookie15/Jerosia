@@ -53,6 +53,7 @@ public class WandEvents implements Listener {
     @EventHandler
     public void onLeapFall(EntityDamageEvent event) {
         if (event.getCause() == EntityDamageEvent.DamageCause.FALL) {
+            if (!(event.getEntity() instanceof Player)) return;
             final User user = this.plugin.getUser((Player) event.getEntity());
             if (isHoldingCustomItem(user.getItemInMainHand(), EMPIRE_WAND) && user.getSelectedSpell() == Spells.LEAP.getSpell()) {
                 event.setCancelled(true);
