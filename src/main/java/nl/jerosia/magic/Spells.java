@@ -1,5 +1,6 @@
 package nl.jerosia.magic;
 
+import nl.jerosia.magic.spells.ConfuseSpell;
 import nl.jerosia.magic.spells.ExplosiveSpell;
 import nl.jerosia.magic.spells.LeapSpell;
 import nl.jerosia.magic.spells.LightningStormSpell;
@@ -9,7 +10,8 @@ import java.util.Arrays;
 public enum Spells {
     EXPLOSIVE(new ExplosiveSpell(), "Explosive", 0),
     LEAP(new LeapSpell(), "Leap", 1),
-    LIGHTNING_STORM(new LightningStormSpell(), "Lightning Storm", 2),;
+    LIGHTNING_STORM(new LightningStormSpell(), "Lightning Storm", 2),
+    CONFUSE(new ConfuseSpell(), "Confuse", 3);
 
     private final Spell spell;
 
